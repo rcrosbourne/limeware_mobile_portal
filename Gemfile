@@ -19,6 +19,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-spork'
   gem 'spork'
+  gem 'rb-inotify', '~> 0.8.8'
 end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
