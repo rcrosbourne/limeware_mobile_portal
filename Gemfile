@@ -5,7 +5,7 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 gem 'jquery-rails'
-gem 'bootstrap-sass'
+#gem 'bootstrap-sass'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
@@ -20,6 +20,8 @@ group :development, :test do
   gem 'guard-spork'
   gem 'spork'
   gem 'rb-inotify', '~> 0.8.8'
+  gem 'capybara'
+  gem 'factory_girl_rails'  
 end
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -29,6 +31,8 @@ group :assets do
   gem 'therubyracer', :platforms => :ruby
   gem 'execjs' 
   gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
+  gem 'less-rails'
 end
 
 
