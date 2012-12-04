@@ -9,7 +9,7 @@ describe "Static Pages" do
   	end
   	it "should have link with content 'Sign In" do
   		visit root_path
-  		page.should have_link("Sign In", href: "#"  )
+  		page.should have_link("Sign In", :href => "#"  )
   	end
   end
 
