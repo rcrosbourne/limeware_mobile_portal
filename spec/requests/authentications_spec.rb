@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Authentication" do
   subject { page }
   describe "signin page" do
-    before {visit signin_path}
+    before {visit root_path}
     it {should have_content('Sign In')}
     #it should have email text field
     #password text field
@@ -12,9 +12,7 @@ describe "Authentication" do
     it {should have_selector('input', id: "password", type: 'password')}
     it {should have_selector('input', type: 'submit', value: 'Sign In')}
     #it should not have sidebar
-    it {should_not have_content('Applications')}
-    it {should_not have_content('Roles')}
-    it {should_not have_content('Users')}
+    it {should_not have_selector('div.well.sidebar-nav')}
     describe "click sign in with blank fields" do
       before { click_button 'Sign In'}
      it {should have_content('Email/Password cannot be empty')}
@@ -30,16 +28,32 @@ describe "Authentication" do
     describe "click sign in with correct user information" do
       before do
         @user = FactoryGirl.create(:valid_ldap_user)
-        visit signin_path
-        fill_in "Email", with: APP_CONFIG[:ldap_user]
-        fill_in "Password", with: APP_CONFIG[:ldap_user_pw]
-        click_button 'Sign In'
+        sign_in_valid_user
       end
-      it {should have_content('Welcome to LMP')}
+      it {should have_content('Landing page')}
       after do
         @user = User.find_by_email(APP_CONFIG[:ldap_user])
         @user.destroy
       end
+    end
+  end
+  describe "signing out" do
+    #attempting to visit home_path without signing in
+    describe "visiting home page without signing in" do
+      before {visit home_path}
+      it {should have_content ("Sign In")}
+      it {should have_selector('div.alert.alert-notice', text: 'Please sign in')}
+    end
+    describe "clicking sign out after signing in" do
+      before do
+        create_test_user
+        visit root_path
+        sign_in_valid_user
+        click_link "Sign Out"
+      end
+      it {should have_content('Sign In')}
+      it {should have_selector('div.alert.alert-notice', text: 'Thanks for signing out')}
+      after {destroy_test_user}
     end
   end
 end
