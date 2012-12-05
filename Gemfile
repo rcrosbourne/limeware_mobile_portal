@@ -9,7 +9,7 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
-
+gem 'net-ldap', '0.3.1'
 
 # Gems used only for assets and not required
 # in production environments by default.

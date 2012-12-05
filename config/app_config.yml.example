@@ -1,0 +1,5 @@
+:domain: "LIMEDOMAIN"
+:ldap_host: "ldaphost.cwwi.cwintra.com"
+:ldap_port:	"389"
+:ldap_user_pw: "valid_password"
+:ldap_user: "firstname.lastname@time4lime.com"
